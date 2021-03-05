@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import ListComponent from "./ListComponent";
 
 const GlobalStyle = createGlobalStyle`
   font-family: Asap;
@@ -50,13 +51,12 @@ function App({}: AppProps) {
       <Study>
         <h2>Categories</h2>
         <StudyBody>
-          <StudyNotes />
+          <StudyNotes >
+            <h4>Some notes</h4>
+            Will go here
+            </StudyNotes>
           <StudyNotes>
-            <Categories>
-              <Pill>content X</Pill>
-              <Pill>content X</Pill>
-              <Pill>content X</Pill>
-            </Categories>
+            <ListComponent/>
           </StudyNotes>
         </StudyBody>
       </Study>
