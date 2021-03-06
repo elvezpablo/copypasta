@@ -8,7 +8,20 @@ const Pill = ({ children }: { children: any }) => {
   const ref = useRef<HTMLDivElement>(null);
   const ro = useRef<ResizeObserver>();
   const [truncate, setTruncate] = useState(false);
-  const handleResize = () => {
+  const handleResize = (entries: ResizeObserverEntry[]) => {
+    // https://stackoverflow.com/questions/49384120/resizeobserver-loop-limit-exceeded
+    // to avoid overloading the ovserver
+    window.requestAnimationFrame(() => {
+      if (!Array.isArray(entries) || !entries.length) {
+        return;
+      }
+      checkTruncate();
+    });
+
+  }
+
+  const checkTruncate = () => {
+
     if (ref.current !== null) {
       const truncate = ref.current.offsetWidth < ref.current.scrollWidth;
       setTruncate(truncate);
@@ -32,7 +45,7 @@ const Pill = ({ children }: { children: any }) => {
   return <Container
     ref={ref}
     onMouseOver={() => setTruncate(false)}
-    onMouseOut={() => handleResize()}
+    onMouseOut={() => checkTruncate()}
     truncate={truncate}
     content={children}>{children}</Container>;
 }

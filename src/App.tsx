@@ -39,7 +39,7 @@ const StudyNotes = styled.div`
 `;
 
 const StudyComponents = styled.div`
-  width: 300px;
+  width: 50%;
   padding: 4px;
 `;
 
