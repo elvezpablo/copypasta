@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Pill} from './Pill';
+import { Pill } from './Pill';
+import { cbs } from './data/categories';
 
 const Container = styled.div`
  background-color: rgba(200,200,200,.3) ;
@@ -28,9 +29,14 @@ const MiniButton = styled.button`
 
 const List = styled.div`
     margin-top: 4px;
-    border: 1px solid #666;
+    border: 2px solid #999;
     border-radius: 3px;
+    overflow-x: hidden;
+    overflow-y: scroll;
     padding: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 300px
 `;
 
 const ListComponent = () => {
@@ -41,7 +47,7 @@ const ListComponent = () => {
                 <MiniButton>...</MiniButton>
             </Header>
             <List>
-                <Pill>Hey X</Pill>
+                {cbs.map(c => (<Pill>{c.fullTitle}</Pill>))}
             </List>
         </Container>
     )

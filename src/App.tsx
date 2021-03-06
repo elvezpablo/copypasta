@@ -31,16 +31,21 @@ const Pill = styled.div`
 
 const StudyBody = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
 
-const StudyNotes = styled.div`
-  flex: 50%;
+const StudyNotes = styled.div`  
   padding: 4px;
 `;
 
-interface AppProps {}
+const StudyComponents = styled.div`
+  width: 300px;
+  padding: 4px;
+`;
 
-function App({}: AppProps) {
+interface AppProps { }
+
+function App({ }: AppProps) {
   // Create the count state.
 
   // Return the App component.
@@ -55,9 +60,9 @@ function App({}: AppProps) {
             <h4>Some notes</h4>
             Will go here
             </StudyNotes>
-          <StudyNotes>
-            <ListComponent/>
-          </StudyNotes>
+          <StudyComponents>
+            <ListComponent />
+          </StudyComponents>
         </StudyBody>
       </Study>
     </Container>
