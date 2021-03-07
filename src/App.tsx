@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import ListComponent from "./ListComponent";
 
+
 const GlobalStyle = createGlobalStyle`
   font-family: Asap;
 `;
@@ -45,6 +46,8 @@ const StudyComponents = styled.div`
 
 interface AppProps { }
 
+
+
 function App({ }: AppProps) {
   // Create the count state.
 
@@ -57,10 +60,14 @@ function App({ }: AppProps) {
         <h2>Categories</h2>
         <StudyBody>
           <StudyNotes >
-            <h4>Some notes</h4>
-            Will go here
+            <h4>Center Ellipsis Pills</h4>
+            <ul>
+              <li>{`Categories list from CBS shows 500 categories of various lengths.`}</li>
+              <li>{`Ellipsis show the beginning and end of long categories. `}</li>
+              <li>{`Hovering over the pill moves the ellipsis to the end. `}</li>
+            </ul>
             </StudyNotes>
-          <StudyComponents>
+          <StudyComponents>            
             <ListComponent />
           </StudyComponents>
         </StudyBody>

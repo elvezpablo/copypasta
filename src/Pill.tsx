@@ -10,7 +10,7 @@ const Pill = ({ children }: { children: any }) => {
   const [truncate, setTruncate] = useState(false);
   const handleResize = (entries: ResizeObserverEntry[]) => {
     // https://stackoverflow.com/questions/49384120/resizeobserver-loop-limit-exceeded
-    // to avoid overloading the ovserver
+    // to avoid overloading the observer
     window.requestAnimationFrame(() => {
       if (!Array.isArray(entries) || !entries.length) {
         return;
@@ -22,7 +22,7 @@ const Pill = ({ children }: { children: any }) => {
 
   const checkTruncate = () => {
 
-    if (ref.current !== null) {
+    if (ref.current) {
       const truncate = ref.current.offsetWidth < ref.current.scrollWidth;
       setTruncate(truncate);
     }
@@ -32,11 +32,11 @@ const Pill = ({ children }: { children: any }) => {
     if (!ro.current) {
       ro.current = new ResizeObserver(handleResize);
     }
-    if (ro.current !== null && ref.current !== null) {
+    if (ro.current && ref.current) {
       ro.current.observe(ref.current);
     }
     return () => {
-      if (ro.current !== null && ref.current !== null) {
+      if (ro.current && ref.current) {
         ro.current.unobserve(ref.current)
       }
     }
@@ -56,7 +56,7 @@ type Truncated = {
 }
 
 const Container = styled.div<Truncated>`
-  background-color: #000;
+  background-color: #333;
   color: whitesmoke;
   font-size: 14px;
   display: inline-block;
@@ -67,6 +67,9 @@ const Container = styled.div<Truncated>`
   text-overflow: ellipsis;  
   cursor: pointer;
   overflow: hidden;
+  :hover {
+    background-color: #000;
+  }
   ${(props) => {
     return props.truncate && `
     :before {

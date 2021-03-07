@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Pill } from './Pill';
 import { cbs } from './data/categories';
+import { useControls } from "leva";
 
 const Container = styled.div`
  background-color: rgba(200,200,200,.3) ;
@@ -40,14 +41,21 @@ const List = styled.div`
 `;
 
 const ListComponent = () => {
+    const { categories } = useControls({
+        categories: {
+            value: 40,
+            min: 0,
+            max: 500,
+            step: 10
+        } })
     return (
         <Container>
             <Header>
-                <Label>categories</Label>
+                <Label>categories ({Math.round(categories)})</Label>
                 <MiniButton>...</MiniButton>
             </Header>
             <List>
-                {cbs.map(c => (<Pill>{c.fullTitle}</Pill>))}
+                {cbs.slice(0,categories).map(c => (<Pill>{c.fullTitle}</Pill>))}
             </List>
         </Container>
     )
